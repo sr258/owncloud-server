@@ -5,6 +5,15 @@
 
 This is the official ownCloud image for the community edition, it is built from our [base container](https://registry.hub.docker.com/u/owncloud/base/). This ownCloud image is designed to work with a data volume in the host filesystem and with separate MariaDB and Redis containers.
 
+## Mit OnlyOffice verbinden
+
+1) Self-Signed-Zertifikat für OnlyOffice erzeugen (siehe deren Docker-Dokumentation) und einmounten
+2) in ownCloud: config/config.php:
+folgendes als vorletzte Zeile einfügen (deaktiviert Abfragen an extern über HTTPS)
+‘onlyoffice’ => array ( ‘verify_peer_off’ => TRUE )
+3) in Only Office
+	As a temporary solution you can disable verification of the certs by the Document Server. It should help. Please change the value of the parameter “rejectUnauthorized”: from true to false in /etc/onlyoffice/documentserver/default.json. After that restart all the services of the Document Server."
+
 
 ## Versions
 

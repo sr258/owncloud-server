@@ -19,6 +19,7 @@ services:
     depends_on:
       - db
       - redis
+      - onlyoffice
     environment:
       - OWNCLOUD_DOMAIN=${OWNCLOUD_DOMAIN}
       - OWNCLOUD_DB_TYPE=mysql
@@ -72,4 +73,8 @@ services:
       - redis:/var/lib/redis
   onlyoffice:
     image: onlyoffice/documentserver
+    ports:
+      - "4431:443"
     restart: always    
+    volumes:
+      - ./documentServer/data:/var/www/onlyoffice/Data
